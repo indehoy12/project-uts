@@ -185,37 +185,37 @@
     <div class="table-responsive">
         <table class="table table-modern">
             <thead>
-                <tr>
-                    <th>ID</th>
+               <tr>
+                    <th>No</th>
                     <th>Tanggal</th>
                     <th>Pelanggan</th>
                     <th>Barang</th>
                     <th class="text-center">Jumlah</th>
                     <th class="text-end">Total Harga</th>
                 </tr>
-            </thead>
-            <tbody>
-                <?php if (!empty($data)): ?>
-                    <?php foreach ($data as $row): ?>
+                    </thead>
+                    <tbody>
+                        <?php $no = 1; ?>
+                        <?php if (!empty($data)): ?>
+                            <?php foreach ($data as $row): ?>
 
-                        <?php
-                        $tanggal = !empty($row['tanggal'])
-                            ? date("d-m-Y H:i", strtotime($row['tanggal']))
-                            : "-";
+                                <?php
+                                $tanggal = !empty($row['tanggal'])
+                                    ? date("d-m-Y H:i", strtotime($row['tanggal']))
+                                    : "-";
 
-                        $pelanggan = $row['nama_pelanggan'] ?? "Umum";
-                        $jumlah = $row['total_jumlah'] ?? 0;
-                        ?>
+                                $pelanggan = $row['nama_pelanggan'] ?? "Umum";
+                                $jumlah = $row['total_jumlah'] ?? 0;
+                                ?>
 
-                        <tr>
-                            <td><?= htmlspecialchars($row['id_transaksi_awal']) ?></td>
-                            <td><?= htmlspecialchars($tanggal) ?></td>
-                            <td><?= htmlspecialchars($pelanggan) ?></td>
-                            <td><?= htmlspecialchars($row['nama_barang']) ?></td>
-                            <td class="text-center"><?= htmlspecialchars($jumlah) ?></td>
-                            <td class="text-end">Rp <?= number_format($row['total_harga'], 0, ',', '.') ?></td>
-                        </tr>
-
+                                <tr>
+                                    <td><?= $no++; ?></td>
+                                    <td><?= htmlspecialchars($tanggal) ?></td>
+                                    <td><?= htmlspecialchars($pelanggan) ?></td>
+                                    <td><?= htmlspecialchars($row['nama_barang']) ?></td>
+                                    <td class="text-center"><?= htmlspecialchars($jumlah) ?></td>
+                                    <td class="text-end">Rp <?= number_format($row['total_harga'], 0, ',', '.') ?></td>
+                                </tr>
                     <?php endforeach; ?>
                 <?php else: ?>
                     <tr>
